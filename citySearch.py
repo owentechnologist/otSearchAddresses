@@ -1,8 +1,13 @@
 from redisearch import GeoFilter, GeoField, Client, Query, IndexDefinition, TextField, NumericField
 # AutoCompleter, Suggestion, aggregation, reducers, TagField
-# see https://github.com/redis-developer/demo-movie-app-redisearch-python for more search example code
+
 import redis
 
+# python3 pip install redisearch
+# https://github.com/RediSearch/redisearch-pyhistory
+# see https://github.com/redis-developer/demo-movie-app-redisearch-python for more search example code
+# http://geohash.gofreerange.com/  <-- helpful to find long lat
+# kick off a container running search:  docker run -p 6379:6379 redislabs/redismod &
 
 def printResult(comment, res, query):
     print('\n********\n'+comment)
