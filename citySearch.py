@@ -48,8 +48,8 @@ client.create_index(
 stopwords = [],
 definition=definition)
 
-# Create the alias 
-client.aliasadd("idx:cities")
+# Create the alias (not used in this example)
+#client.aliasadd("idx:cities")
 
 
 # Indexing a document for RediSearch 2.0+
