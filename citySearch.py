@@ -57,7 +57,7 @@ client.redis.hset('addr:1',
                 mapping={
                     'city': 'San Francisco',
                     'state': 'CA',
-                    'search_terms_city': 'SFO,S.F.O.,SF,San Frn,frisco',
+                    'search_terms_city': 'SFO,S.F.O.,SF,San Frn',
                     'loc': "-122.419,37.774"
                 })
 client.redis.hset('addr:2',
@@ -96,8 +96,8 @@ q = Query('SFO').verbatim().no_content().with_scores().paging(0, 5)
 res = client.search(q)
 printResult(comment,res,q)
 
-comment = '3: Query(\'%%fisco%%\').with_scores()'
-q = Query('%%fisco%%').with_scores()
+comment = '3: Query(\'%%%frisco%%%\').with_scores()'
+q = Query('%%%frisco%%%').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
 
