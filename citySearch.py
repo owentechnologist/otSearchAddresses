@@ -8,6 +8,7 @@ import redis
 # see https://github.com/redis-developer/demo-movie-app-redisearch-python for more search example code
 # http://geohash.gofreerange.com/  <-- helpful to find long lat
 # kick off a container running search:  docker run -p 6379:6379 redislabs/redismod &
+# these tests can be useful https://github.com/RediSearch/RediSearch/blob/master/tests/pytests/test_fuzzy.py
 
 def printResult(comment, res, query):
     print('\n********\n'+comment)
