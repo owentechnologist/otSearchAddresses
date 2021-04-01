@@ -23,18 +23,15 @@ def printResult(comment, res, query):
         #print('score: ' +str(res.docs[0].score))
 
 
-def search_data(city):
-   j = client.search(Query(city).limit_fields('title').verbatim()).docs[0].__dict__
-   del j['id']
-   del j['payload']
-   return(j)
-
 # Creating a client with a given index name
 client = Client("idx:cities:test_index")
-client.drop_index()
 
-# IndexDefinition is available for RediSearch 2.0+
-# what happens if score=1.0?
+try:
+    client.drop_index()
+except:
+    print('index does not exist yet - no worries...')
+
+# IndexDefinition auto-indexes any hashes with keys that have a matching prefix
 definition = IndexDefinition(
    prefix=['addr:'],
    language='English'
@@ -145,12 +142,7 @@ q = Query('san bubba francisco').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
 
-comment = '8: Query(\'francisco san\').in_order().with_scores()'
-q = Query('francisco san').in_order().with_scores()
-res = client.search(q)
-printResult(comment,res,q)
-
-comment = '8a: Query(\'francisco san\').with_scores()'
+comment = '8: Query(\'francisco san\').with_scores()'
 q = Query('francisco san').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
