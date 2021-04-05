@@ -8,7 +8,7 @@ import redis
 # see https://github.com/redis-developer/demo-movie-app-redisearch-python for more search example code
 # http://geohash.gofreerange.com/  <-- helpful to find long lat
 # kick off a container running search:  docker run -p 6379:6379 redislabs/redismod &
-# these tests can be useful https://github.com/RediSearch/RediSearch/blob/master/tests/pytests/test_fuzzy.py
+# these tests can be useful as references https://github.com/RediSearch/RediSearch/blob/master/tests/pytests/test_fuzzy.py
 # https://forum.redislabs.com/t/search-query-syntax-complex-query-in-one-exact-phrase-prefix-and-fuzzy/661/4
 
 def printResult(comment, res, query):

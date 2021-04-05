@@ -27,3 +27,9 @@ http://geohash.gofreerange.com/
 ### kick off a container running search:  
 
 docker run -p 6379:6379 redislabs/redismod &
+
+### these tests can be useful as references 
+https://github.com/RediSearch/RediSearch/blob/master/tests/pytests/test_fuzzy.py
+
+### discussion on the use of fuzzy queries
+https://forum.redislabs.com/t/search-query-syntax-complex-query-in-one-exact-phrase-prefix-and-fuzzy/661/4
