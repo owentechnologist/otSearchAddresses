@@ -20,6 +20,10 @@ You may find these things useful:
 https://github.com/redis-developer/demo-movie-app-redisearch-python 
 
 
+### And this example uses the command syntax: 
+https://github.com/Redislabs-Solution-Architects/Redis-Enterprise-demos/blob/master/Search/SearchDemo.py
+
+
 ### helpful to find long lat:
 
 http://geohash.gofreerange.com/  
