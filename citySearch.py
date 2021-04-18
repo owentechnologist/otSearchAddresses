@@ -72,7 +72,7 @@ client.redis.hset('addr:2',
 client.redis.hset('addr:3',
                 mapping={
                     'city': 'San Jose',
-                    'state': 'CA',
+                    'state': 'CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA CA',
                     'search_terms_city': 'SanJose',
                     'loc': "-121.859,37.291"
                 })
@@ -84,6 +84,11 @@ client.redis.hset('addr:4',
                     'loc': "-106.640,35.064"
                 })
 
+# Add synonyms {COA,'City Of Angels','Los Angeles'} {'song','know the way','San Jose'} {'Duke City','Albuquerque','Balloon Museum'}
+ 
+client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','LA_Group','COA','LA')
+client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','SJ_Group','song','SanJose')
+client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','ABQ_Group','Duke','Museum','Albuquerque')
 
 comment= '1: Simple search: Query(\'SFO\').with_scores()'
 q = Query('SFO').with_scores()
@@ -134,8 +139,13 @@ q = Query('alb*').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
 
-comment = '7: Query(\'san francisco\').no_content().verbatim().with_scores()'
-q = Query('san francisco').no_content().verbatim().with_scores()
+comment = '7: Query(\'san francisco\').verbatim().with_scores()'
+q = Query('san francisco').verbatim().with_scores()
+res = client.search(q)
+printResult(comment,res,q)
+
+comment = '7a: Query(\'san bubba francisco\').slop(100).with_scores()'
+q = Query('san bubba francisco').slop(100).with_scores()
 res = client.search(q)
 printResult(comment,res,q)
 
@@ -161,6 +171,26 @@ printResult(comment,res,q)
 
 comment = '11: Query(\'%%sajo%%\').with_scores().limit_ids(\'addr:3\')'
 q = Query('%%sajo%%').with_scores().limit_ids('addr:3')
+res = client.search(q)
+printResult(comment,res,q)
+
+comment = '12a: Query(\'Duke\').with_scores())'
+q = Query('Duke').with_scores()
+res = client.search(q)
+printResult(comment,res,q)
+
+comment = '12b: Query(\'song\').with_scores())'
+q = Query('song').with_scores()
+res = client.search(q)
+printResult(comment,res,q)
+
+comment = '12c: Query(\'COA\').with_scores())'
+q = Query('COA').with_scores()
+res = client.search(q)
+printResult(comment,res,q)
+
+comment = '12d: Query(\'Museum\').with_scores())'
+q = Query('Museum').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
 
