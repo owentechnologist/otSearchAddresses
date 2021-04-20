@@ -84,8 +84,7 @@ client.redis.hset('addr:4',
                     'loc': "-106.640,35.064"
                 })
 
-# Add synonyms {COA,'City Of Angels','Los Angeles'} {'song','know the way','San Jose'} {'Duke City','Albuquerque','Balloon Museum'}
- 
+# Add synonyms  (single word/token only: that is given equal value as the alternate provided token)
 client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','LA_Group','COA','LA')
 client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','SJ_Group','song','SanJose')
 client.redis.execute_command('FT.SYNUPDATE','idx:cities:test_index','ABQ_Group','Duke','Museum','Albuquerque')
@@ -193,6 +192,7 @@ comment = '12d: Query(\'Museum\').with_scores())'
 q = Query('Museum').with_scores()
 res = client.search(q)
 printResult(comment,res,q)
+
 
 if __name__ == '__main__':
     print('\n\nEnd of Program')
